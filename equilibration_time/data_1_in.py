@@ -8,9 +8,9 @@ from PCF import PCF_L
 from Time import Time
 
 # gillespie parameter
-Nlinker = 2
+Nlinker = 5
 ell_tot = 10**3
-kdiff = 1./ell_tot
+kdiff = 0.1/ell_tot
 Energy = -15
 
 Nprocess = 100
@@ -44,7 +44,7 @@ measurement_flags = {
     'NRG':True,
     'Cluster': False,
     'MSD': False,
-    'ISF': False,
+    'ISF': True,
     'PCF':False,
     'PCF_L':False#,
     #'Time':True
@@ -52,8 +52,8 @@ measurement_flags = {
 }
 
 # Simulation parameters
-step_tot = 10**4
+step_tot = 2*10**5
 #check_steps = 10**2
-initial_check_steps = step_tot
+initial_check_steps = 10**3
 coarse_grained_step = 10**1
-log_base=False
+log_base=1.5
