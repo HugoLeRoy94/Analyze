@@ -7,8 +7,16 @@
 #SBATCH --cpus-per-task=10
 #SBATCH --mem-per-cpu=1G
 
-module load gcc/11.3.0
-module load intel/2021.6.0
-module load python/3.10.4
+# Load the module
+module load gcc python3
+
+# Activate the virtual environment
+source /opt/`hostname`/venv-gcc/bin/activate
+
+# Run your Python script
+python /path/to/your_script.py
+
+# Deactivate the environment (optional here as the job is ending)
+deactivate
 
 srun python mu5e_2.py
