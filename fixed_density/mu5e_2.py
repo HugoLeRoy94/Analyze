@@ -1,4 +1,6 @@
 
+import time
+start_time =  time.time()
 import numpy as np
 #from scipy.special import erfc
 import sys
@@ -70,3 +72,4 @@ log_base=1.5
 
 Parallel_Run.parallel_evolution(args,step_tot,initial_check_steps,coarse_grained_step,media+'mu5e_2.hdf',
                                 measurement_args,measurement_flags,log_base)
+print(time.time()-start_time)

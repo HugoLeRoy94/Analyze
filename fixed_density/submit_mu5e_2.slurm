@@ -8,15 +8,12 @@
 #SBATCH --mem-per-cpu=1G
 
 # Load the module
-module load gcc python3
+module load gcc python
 
 # Activate the virtual environment
 source /opt/`hostname`/venv-gcc/bin/activate
 
 # Run your Python script
 python /path/to/your_script.py
-
-# Deactivate the environment (optional here as the job is ending)
-deactivate
 
 srun python mu5e_2.py
