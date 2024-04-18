@@ -7,6 +7,6 @@
 #SBATCH --cpus-per-task=10
 #SBATCH --mem-per-cpu=1G
 
-module load python3 
+module load python/3.10.4
 
-srun python Mu5E_2.py
+srun python mu5e_2.py
