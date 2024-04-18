@@ -7,11 +7,17 @@ from PCF import PCF
 from PCF import PCF_L
 from Time import Time
 
+from scipy.special import erfc
+
 # gillespie parameter
 Nlinker = 5
-ell_tot = 10**3
+ell_tot = 10**2
 kdiff = 0.1/ell_tot
 Energy = -15
+
+avR = lambda L,N : 2*(np.exp(-1.5/(L/N)) * np.sqrt(L/N*6/np.pi)*(3+2*L/N) - 9*erfc(np.sqrt(3/2/(L/N))))/(9*L/N) #average distance between equilibrated nodes
+print(avR(ell_tot,Nlinker))
+print(np.sqrt(2*ell_tot/Nlinker/3))
 
 Nprocess = 100
 seeds = set()
@@ -21,7 +27,7 @@ seeds = list(seeds)
 args = [[ell_tot,Energy,kdiff,seeds[_],Nlinker,3] for _ in range(Nprocess)]
 
 # argument of the different classes
-cluster_arg = tuple([3.]) # max distance
+cluster_arg = tuple([avR(ell_tot,Nlinker)]) # max distance
 MSD_arg = () # no argument 
 ISF_arg = (0.5,10) # q_norm, q_num_sample
 NRG_arg = ()
@@ -30,7 +36,7 @@ PCF_L_arg = (ell_tot,30) # max_distance,numb_bin
 Time_arg = ()
 
 measurement_args = {
-    'cluster': (Cluster, cluster_arg),
+    'Cluster': (Cluster, cluster_arg),
     'MSD': (MSD, MSD_arg),
     'ISF': (ISF, ISF_arg),
     'PCF':(PCF,PCF_arg),
@@ -42,9 +48,9 @@ measurement_args = {
 
 measurement_flags = {
     'NRG':True,
-    'Cluster': False,
+    'Cluster': True,
     'MSD': False,
-    'ISF': True,
+    'ISF': False,
     'PCF':False,
     'PCF_L':False#,
     #'Time':True
