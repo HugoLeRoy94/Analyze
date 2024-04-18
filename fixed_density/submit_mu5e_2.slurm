@@ -11,9 +11,11 @@
 module load gcc python
 
 # Activate the virtual environment
-source /opt/`hostname`/venv-gcc/bin/activate
+source /home/hcleroy/venvs/base/bin/activate
 
 # Run your Python script
-python /path/to/your_script.py
+python mu5e_2.py
 
 srun python mu5e_2.py
+
+deactivate
