@@ -25,7 +25,7 @@ kdiff = 0.001
 Energy = -15
 
 
-Nprocess = 10
+Nprocess = 50
 seeds = set()
 while len(seeds) < Nprocess:
     seeds.add(np.random.randint(1000000))
@@ -64,7 +64,7 @@ measurement_flags = {
 }
 
 # Simulation parameters
-step_tot = 10**4
+step_tot = 2*10**6
 #check_steps = 10**2
 initial_check_steps = 10**3
 coarse_grained_step = 10**2
@@ -72,4 +72,4 @@ log_base=1.5
 
 Parallel_Run.parallel_evolution(args,step_tot,initial_check_steps,coarse_grained_step,media+'mu5e_2.hdf',
                                 measurement_args,measurement_flags,log_base)
-print(time.time()-start_time)
+print('time of execution : '+str(time.time()-start_time))
