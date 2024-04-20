@@ -64,7 +64,7 @@ measurement_flags = {
 }
 
 # Simulation parameters
-step_tot = 2*10**6
+step_tot = 10**6
 #check_steps = 10**2
 initial_check_steps = 10**3
 coarse_grained_step = 10**2
@@ -72,4 +72,16 @@ log_base=1.5
 
 Parallel_Run.parallel_evolution(args,step_tot,initial_check_steps,coarse_grained_step,media+'mu5e_2.hdf',
                                 measurement_args,measurement_flags,log_base)
-print('time of execution : '+str(time.time()-start_time))
+
+
+duration = time.time()-start_time
+# Convert seconds to days, hours, minutes, and seconds
+days = int(duration // (24 * 3600))
+duration = duration % (24 * 3600)
+hours = int(duration // 3600)
+duration %= 3600
+minutes = int(duration // 60)
+seconds = int(duration % 60)
+
+# Print the formatted duration
+print(f"Execution Time: {days} days, {hours} hours, {minutes} minutes, {seconds} seconds")
